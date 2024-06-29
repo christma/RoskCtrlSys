@@ -10,7 +10,7 @@ class DateUtilsTest {
 
     @Test
     void testConvertLocalDateTime2String() {
-        assertThat(DateUtils.convertLocalDateTime2String(LocalDateTime.of(2020, 1, 1, 0, 0, 0))).isEqualTo("result");
+        assertThat(DateUtils.convertLocalDateTime2String(LocalDateTime.of(2020, 1, 1, 0, 0, 0))).isEqualTo("2020-01-01 00:00:00");
     }
 
     @Test

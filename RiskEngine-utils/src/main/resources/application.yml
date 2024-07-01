@@ -1,0 +1,10 @@
+spring:
+  redis:
+    lettuce:
+      pool:
+        max-idle: 2
+        max-active: 2
+        min-idle: 0
+        max-wait: 1ms
+    host: localhost
+    port: 6379

@@ -8,3 +8,8 @@ spring:
         max-wait: 1ms
     host: localhost
     port: 6379
+hbase:
+  conf:
+    config-map:
+      'hbase.zookeeper.quorum':'zookeeper'
+      'hbase.zookeeper.property.clientPort':'2181'

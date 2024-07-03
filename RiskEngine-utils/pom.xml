@@ -39,6 +39,20 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.com</groupId>-->
+<!--            <artifactId>hbase-client</artifactId>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.apache.hbase</groupId>-->
+<!--                    <artifactId>hadoop-common</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.com</groupId>-->
+<!--            <artifactId>hadoop-common</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
 </project>

@@ -7,10 +7,10 @@ import java.io.InputStream;
 import java.lang.reflect.Parameter;
 
 public class ParameterUtil {
-    private static final String FILE = "flink.properties";
+//    private static final String FILE = "flink.properties";
 
-    public static ParameterTool getParameters() throws IOException {
-        InputStream inputStream = ParameterUtil.class.getClassLoader().getResourceAsStream(FILE);
+    public static ParameterTool getParameters(String file) throws IOException {
+        InputStream inputStream = ParameterUtil.class.getClassLoader().getResourceAsStream(file);
 
         return ParameterTool.fromPropertiesFile(inputStream);
     }

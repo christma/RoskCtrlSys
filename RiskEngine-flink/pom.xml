@@ -27,5 +27,6 @@
             <artifactId>flink-streaming-java_2.12</artifactId>
             <version>1.14.4</version>
         </dependency>
+
     </dependencies>
 </project>

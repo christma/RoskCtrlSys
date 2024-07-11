@@ -5,9 +5,7 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class RedisUtilTest {
+class RedisWriteUtilTest {
 
     @Test
     void writeByBahirWithString() throws Exception {
@@ -18,7 +16,7 @@ class RedisUtilTest {
 
 
         // Run the test
-        RedisUtil.writeByBahirWithString(source);
+        RedisWriteUtil.writeByBahirWithString(source);
 
         // Verify the results
 

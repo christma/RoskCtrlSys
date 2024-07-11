@@ -109,6 +109,11 @@
                 <artifactId>flink-test-utils_2.12</artifactId>
                 <version>${flink.version}</version>
             </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>3.7.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

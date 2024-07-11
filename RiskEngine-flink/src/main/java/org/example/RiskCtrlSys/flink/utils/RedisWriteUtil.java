@@ -7,10 +7,8 @@ import org.apache.flink.streaming.connectors.redis.RedisSink;
 import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisPoolConfig;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.util.HashSet;
 
-public class RedisUtil {
+public class RedisWriteUtil {
 
     private static FlinkJedisPoolConfig JEDIS_POOL_CONFIG = null;
 

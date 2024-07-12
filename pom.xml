@@ -114,6 +114,17 @@
                 <artifactId>jedis</artifactId>
                 <version>3.7.1</version>
             </dependency>
+
+            <dependency>
+                <groupId>ru.yandex.clickhouse</groupId>
+                <artifactId>clickhouse-jdbc</artifactId>
+                <version>0.3.2</version> <!-- 替换为最新的稳定版本 -->
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-jdbc_2.12</artifactId>
+                <version>1.14.5</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

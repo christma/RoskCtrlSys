@@ -36,8 +36,6 @@ public class RedisSource extends RichParallelSourceFunction<RedisPO> {
             case STRING:
                 data = redisBuilder.get(key);
         }
-
-
         output.collect(new RedisPO(data));
 
 //        }

@@ -116,9 +116,9 @@
             </dependency>
 
             <dependency>
-                <groupId>ru.yandex.clickhouse</groupId>
+                <groupId>com.clickhouse</groupId>
                 <artifactId>clickhouse-jdbc</artifactId>
-                <version>0.3.2</version> <!-- 替换为最新的稳定版本 -->
+                <version>0.6.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.flink</groupId>

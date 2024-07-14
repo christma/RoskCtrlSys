@@ -1,12 +1,22 @@
 package org.example.riskCtrlSys.utils.json;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONException;
 import com.alibaba.fastjson2.TypeReference;
 
 import java.util.List;
 import java.util.Map;
 
 public class JsonUtils {
+
+    public static boolean isValidJson(String json) {
+        try {
+            JSON.parse(json);
+            return true;
+        } catch (JSONException e) {
+            return false;
+        }
+    }
 
     public static String obj2JsonStr(Object obj) {
         return JSON.toJSONString(obj);

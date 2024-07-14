@@ -24,50 +24,18 @@ public class MySQLUtil {
             username = parameterTool.get("mysql.username");
             password = parameterTool.get("mysql.password");
             database = parameterTool.get("mysql.database");
-
+            System.out.println(url);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-//    public static DataStream<Row> readMySQLWithTableOrSQLAPI(StreamExecutionEnvironment env) throws Exception {
-//
-//        EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().inStreamingMode().build();
-//
-//        StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env, environmentSettings);
-//
-//        tableEnvironment.getConfig().setSqlDialect(SqlDialect.DEFAULT);
-//
-//        String DDL = "create table mysql_source(" +
-//                "id int," +
-//                "name string," +
-//                "primary key (id) not enforced" +
-//                ")with(" +
-//                "'connector'='jdbc'," +
-//                "'url'='" + url + "'," +
-//                "'username'='" + username + "'," +
-//                "'password'='" + password + "'," +
-//                "'table-name'='" + database + "'" +
-//                ")";
-//
-//        tableEnvironment.executeSql(DDL);
-//
-//        Table table = tableEnvironment.sqlQuery("select * from mysql_source");
-//
-//        return tableEnvironment.toDataStream(table, Row.class);
-//
-//
-//    }
-
-
-    public static void main(String[] args) throws Exception {
-
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+    public static DataStream<Row> readMySQLWithTableOrSQLAPI(StreamExecutionEnvironment env) throws Exception {
 
         EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().inStreamingMode().build();
 
-        StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env,environmentSettings);
+        StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env, environmentSettings);
 
         tableEnvironment.getConfig().setSqlDialect(SqlDialect.DEFAULT);
 
@@ -87,10 +55,42 @@ public class MySQLUtil {
 
         Table table = tableEnvironment.sqlQuery("select * from mysql_source");
 
-        DataStream<Row> dataStream = tableEnvironment.toDataStream(table, Row.class);
-        dataStream.print();
+        return tableEnvironment.toDataStream(table, Row.class);
 
-        env.execute();
+
     }
+
+
+//    public static void main(String[] args) throws Exception {
+//
+//        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+//
+//        EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().inStreamingMode().build();
+//
+//        StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env,environmentSettings);
+//
+//        tableEnvironment.getConfig().setSqlDialect(SqlDialect.DEFAULT);
+//
+//        String DDL = "create table mysql_source(" +
+//                "id int," +
+//                "name string," +
+//                "primary key (id) not enforced" +
+//                ")with(" +
+//                "'connector'='jdbc'," +
+//                "'url'='" + url + "'," +
+//                "'username'='" + username + "'," +
+//                "'password'='" + password + "'," +
+//                "'table-name'='" + database + "'" +
+//                ")";
+//
+//        tableEnvironment.executeSql(DDL);
+//
+//        Table table = tableEnvironment.sqlQuery("select * from mysql_source");
+//
+//        DataStream<Row> dataStream = tableEnvironment.toDataStream(table, Row.class);
+//        dataStream.print();
+//
+//        env.execute();
+//    }
 
 }

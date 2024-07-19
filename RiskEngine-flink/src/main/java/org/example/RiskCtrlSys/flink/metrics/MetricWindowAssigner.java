@@ -12,6 +12,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class MetricWindowAssigner extends WindowAssigner<EventPO, TimeWindow> {
+
+    private long size;
+    private long step;
+    private long offset;
+
     @Override
     public Collection<TimeWindow> assignWindows(EventPO eventPO, long l, WindowAssignerContext windowAssignerContext) {
         return Collections.emptyList();

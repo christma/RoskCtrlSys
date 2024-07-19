@@ -12,6 +12,7 @@ public class MySQLJDBCUtil {
     private static String database = null;
     private static PreparedStatement preparedStatement = null;
     private static Connection conn;
+    private static ResultSet rs = null;
 
     static {
         try {
@@ -27,10 +28,19 @@ public class MySQLJDBCUtil {
     }
 
 
-    public static PreparedStatement init(String sql) throws SQLException {
+    public static Connection init() throws SQLException {
         conn = DriverManager.getConnection(url, username, password);
-        return conn.prepareStatement(sql);
+        return conn;
+    }
 
+
+    public static PreparedStatement initPrepareStatement(Connection conn, String sql) {
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return preparedStatement;
     }
 
     public static void close() throws SQLException {
@@ -44,8 +54,18 @@ public class MySQLJDBCUtil {
     }
 
     public static ResultSet executeQuery(PreparedStatement preparedStatement) throws SQLException {
-        return preparedStatement.executeQuery();
+        rs = preparedStatement.executeQuery();
+        return rs;
     }
 
-
+    public static void closeResultSet() {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+

@@ -36,4 +36,13 @@ public class DateUtils {
         return localDateTime.toInstant(ZoneOffset.of("+8")).toEpochMilli();
     }
 
+    public static LocalDateTime localDateTimePlusDay(LocalDateTime dateTime, long days) {
+        return dateTime.plusDays(days);
+    }
+
+    public static LocalDateTime localDateTimePlusSeconds(LocalDateTime dateTime, long seconds) {
+        return dateTime.plusSeconds(seconds);
+    }
+
+
 }

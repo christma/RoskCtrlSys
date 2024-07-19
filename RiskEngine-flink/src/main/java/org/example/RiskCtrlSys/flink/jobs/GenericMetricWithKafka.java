@@ -36,11 +36,11 @@ public class GenericMetricWithKafka {
                                 .<EventPO>forBoundedOutOfOrderness(max_time)
                                 .withTimestampAssigner(new MetricTimestampAssigner())
                 )
-                .flatMap(new MetricFlatMap())
+                .flatMap(new MetricConfFlatMap())
                 .filter(new MetricFilter())
                 .keyBy(new MetricKeyBy())
                 .window(new MetricWindowAssigner())
-                .trigger(new MetricTrigger())
-                .aggregate(new MetricAggregate(), new MetricWindowFunction());
+                .trigger(new MetricTrigger());
+//                .aggregate(new MetricAggregate(), new MetricWindowFunction());
     }
 }

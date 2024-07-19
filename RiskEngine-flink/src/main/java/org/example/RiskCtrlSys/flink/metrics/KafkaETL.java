@@ -8,7 +8,7 @@ public class KafkaETL implements MapFunction<KafkaMessagePO, EventPO> {
 
     @Override
     public EventPO map(KafkaMessagePO kafkaMessagePO) throws Exception {
-        String user_id = kafkaMessagePO.getUser_id_str();
+        Integer user_id = kafkaMessagePO.getUser_id_int();
         String event_time = kafkaMessagePO.getEvent_time();
         String behavior_name = kafkaMessagePO.getBehavior_name();
         String event_target_id = kafkaMessagePO.getEvent_target_id();

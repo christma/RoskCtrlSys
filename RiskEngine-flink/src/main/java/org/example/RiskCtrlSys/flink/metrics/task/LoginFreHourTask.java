@@ -26,10 +26,10 @@ public class LoginFreHourTask {
 
         // keyed
 
-        KeyedStream<EventPO, String> keyedStream = filtered.keyBy(new KeySelector<EventPO, String>() {
+        KeyedStream<EventPO, Integer> keyedStream = filtered.keyBy(new KeySelector<EventPO, Integer>() {
             @Override
-            public String getKey(EventPO eventPO) throws Exception {
-                return eventPO.getUser_id();
+            public Integer getKey(EventPO eventPO) throws Exception {
+                return eventPO.getUser_id_int();
             }
         });
 

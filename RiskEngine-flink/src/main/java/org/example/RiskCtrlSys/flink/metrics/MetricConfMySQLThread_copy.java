@@ -10,17 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicReference;
 
-public class MetricConfMySQLThread implements Runnable {
+public class MetricConfMySQLThread_copy implements Callable<MetricsConfPO> {
     private PreparedStatement preparedStatement = null;
     private ConcurrentHashMap<String, String> MetricAggMap = new ConcurrentHashMap<>();
     private MetricsConfPO metricsConfPO = null;
-    private AtomicReference<MetricsConfPO> latestMetricsConf;
 
-    public MetricConfMySQLThread(PreparedStatement preparedStatement, AtomicReference<MetricsConfPO> latestMetricsConf) {
+    public MetricConfMySQLThread_copy(PreparedStatement preparedStatement) {
         this.preparedStatement = preparedStatement;
-        this.latestMetricsConf = latestMetricsConf;
     }
 
     private MetricsConfPO metricConfQuery() {
@@ -66,9 +63,8 @@ public class MetricConfMySQLThread implements Runnable {
 
 
     @Override
-    public void run() {
-        MetricsConfPO result = metricConfQuery();
-        latestMetricsConf.set(result);
+    public MetricsConfPO call() throws Exception {
+        return metricConfQuery();
     }
 
 }

@@ -14,6 +14,7 @@ import org.example.RIskCtrlSys.modle.MetricsConfPO;
 import org.example.RiskCtrlSys.flink.clickhourse.sink.ClickHouseJdbcStatementBuilder;
 import org.example.RiskCtrlSys.flink.metrics.KafkaETL;
 import org.example.RiskCtrlSys.flink.metrics.MetricConfFlatMap;
+import org.example.RiskCtrlSys.flink.metrics.MetricConfMySQLThread;
 import org.example.RiskCtrlSys.flink.utils.ClickHouseUtil;
 import org.example.RiskCtrlSys.flink.utils.KafkaUtil;
 import org.example.RiskCtrlSys.flink.utils.MySQLJDBCUtil;
@@ -22,7 +23,9 @@ import org.example.riskCtrlSys.utils.common.CommonUtil;
 
 import java.sql.*;
 import java.util.Arrays;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
+
+import static java.lang.Thread.sleep;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -38,13 +41,30 @@ public class Main {
         env.setParallelism(1);
         DataStream<KafkaMessagePO> stream = KafkaUtil.read(env);
         SingleOutputStreamOperator<EventPO> operator = stream.map(new KafkaETL());
+
         SingleOutputStreamOperator<EventPO> flatMap = operator.flatMap(new MetricConfFlatMap());
         flatMap.print();
 
         env.execute();
-//        MetricsConfPO metricsConfPO = metricConfQuery();
+        MetricsConfPO metricsConfPO = metricConfQuery();
+        System.out.println(metricsConfPO);
+//
+//        Connection conn = MySQLJDBCUtil.init();
+//        String sql = "select * from risk.metric_attr where is_enable = 'true' and metric_agg_type = 'flink'";
+//        PreparedStatement preparedStatement = MySQLJDBCUtil.initPrepareStatement(conn,sql);
+//        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+//       executorService.scheduleAtFixedRate(
+//                new MetricConfMySQLThread_test(preparedStatement),
+//                0L,
+//                10L,
+//                TimeUnit.SECONDS
+//        );
+//        MetricsConfPO metricsConfPO = schedule.get();
 //        System.out.println(metricsConfPO);
 
+
+//        System.out.println("-------");
+//        sleep(100*1000);
     }
 
 

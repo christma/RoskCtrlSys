@@ -15,16 +15,12 @@ public class MySQLJDBCUtil {
     private static ResultSet rs = null;
 
     static {
-        try {
-            ParameterTool parameterTool = ParameterUtil.getParameters();
-            url = parameterTool.get("mysql.url");
-            username = parameterTool.get("mysql.username");
-            password = parameterTool.get("mysql.password");
-            database = parameterTool.get("mysql.database");
-            System.out.println(url);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        ParameterTool parameterTool = ParameterUtil.getParameters();
+        url = parameterTool.get("mysql.url");
+        username = parameterTool.get("mysql.username");
+        password = parameterTool.get("mysql.password");
+        database = parameterTool.get("mysql.database");
+        System.out.println(url);
     }
 
 

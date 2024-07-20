@@ -15,14 +15,10 @@ public class RedisWriteUtil {
     static {
         ParameterTool parameterTool = null;
 
-        try {
-            parameterTool = ParameterUtil.getParameters();
-            String host = parameterTool.get("redis.host");
-            String port = parameterTool.get("redis.port");
-            JEDIS_POOL_CONFIG = new FlinkJedisPoolConfig.Builder().setHost(host).setPort(Integer.parseInt(port)).build();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        parameterTool = ParameterUtil.getParameters();
+        String host = parameterTool.get("redis.host");
+        String port = parameterTool.get("redis.port");
+        JEDIS_POOL_CONFIG = new FlinkJedisPoolConfig.Builder().setHost(host).setPort(Integer.parseInt(port)).build();
     }
 
     public static void writeByBahirWithString(DataStream<Tuple2<String, String>> input) {

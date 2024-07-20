@@ -18,7 +18,7 @@ public class ClickHouseUtil {
 
     static {
         try {
-            ParameterTool parameterTool = ParameterUtil.getParameters("flink.properties");
+            ParameterTool parameterTool = ParameterUtil.getParameters();
             URL = parameterTool.get("clickhouse.url");
             System.out.println(URL);
         } catch (IOException e) {

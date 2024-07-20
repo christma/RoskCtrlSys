@@ -49,7 +49,7 @@ public class MetricConfFlatMap extends RichFlatMapFunction<EventPO, EventPO> {
 
         //获取线程返回值
         MetricsConfPO metricsConfPO = latestMetricsConf.get();
-        eventPO.setMeiMetricsConfPO(metricsConfPO);
+        eventPO.setMetricsConfPO(metricsConfPO);
         collector.collect(eventPO);
 //
 //        if (metricsConfPO != null) {

@@ -16,7 +16,7 @@ public class RedisWriteUtil {
         ParameterTool parameterTool = null;
 
         try {
-            parameterTool = ParameterUtil.getParameters("flink.properties");
+            parameterTool = ParameterUtil.getParameters();
             String host = parameterTool.get("redis.host");
             String port = parameterTool.get("redis.port");
             JEDIS_POOL_CONFIG = new FlinkJedisPoolConfig.Builder().setHost(host).setPort(Integer.parseInt(port)).build();

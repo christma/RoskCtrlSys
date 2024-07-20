@@ -33,9 +33,8 @@ public class MetricWithKafka {
         env.setParallelism(1);
 
 
-        DataStream<KafkaMessagePO> stream = KafkaUtil.read(env);
 
-        SingleOutputStreamOperator<EventPO> operator = stream.map(new KafkaETL());
+        DataStream<EventPO> operator = KafkaUtil.read();;
 
         operator.print();
 

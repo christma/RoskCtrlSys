@@ -36,11 +36,10 @@ public class Main {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        ParameterTool parameterTool = ParameterUtil.getParameters("flink.properties");
+        ParameterTool parameterTool = ParameterUtil.getParameters();
         env.getConfig().setGlobalJobParameters(parameterTool);
         env.setParallelism(1);
-        DataStream<KafkaMessagePO> stream = KafkaUtil.read(env);
-        SingleOutputStreamOperator<EventPO> operator = stream.map(new KafkaETL());
+        DataStream<EventPO> operator = KafkaUtil.read();
 
         SingleOutputStreamOperator<EventPO> flatMap = operator.flatMap(new MetricConfFlatMap());
         flatMap.print();
@@ -103,8 +102,8 @@ public class Main {
             MySQLJDBCUtil.closeResultSet();
         }
 
-        MetricAggMap.forEach((key,value) -> {
-            System.out.println(key +" -> "+ value);
+        MetricAggMap.forEach((key, value) -> {
+            System.out.println(key + " -> " + value);
         });
 
         return metricsConfPO;

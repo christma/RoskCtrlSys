@@ -19,7 +19,7 @@ public class MySQLUtil {
 
     static {
         try {
-            ParameterTool parameterTool = ParameterUtil.getParameters("flink.properties");
+            ParameterTool parameterTool = ParameterUtil.getParameters();
             url = parameterTool.get("mysql.url");
             username = parameterTool.get("mysql.username");
             password = parameterTool.get("mysql.password");

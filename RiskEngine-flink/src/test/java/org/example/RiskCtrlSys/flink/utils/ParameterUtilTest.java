@@ -11,8 +11,7 @@ class ParameterUtilTest {
 
     @Test
     void testGetParameters() throws Exception {
-        String file = "flink.properties";
-        ParameterTool parameters = ParameterUtil.getParameters(file);
+        ParameterTool parameters = ParameterUtil.getParameters();
         assertEquals("ImoocTest", parameters.get("imooc"));
     }
 

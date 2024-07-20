@@ -16,22 +16,13 @@ import java.time.Duration;
 public class GenericMetricWithKafka {
 
     public static void main(String[] args) {
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
-        env.enableCheckpointing(60000);
-        env.getCheckpointConfig().setCheckpointTimeout(30000);
-        env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
-        env.getCheckpointConfig().setTolerableCheckpointFailureNumber(3);
-        env.getCheckpointConfig().setMaxConcurrentCheckpoints(1);
-        env.setStateBackend(new HashMapStateBackend());
-        env.setParallelism(1);
 
 
-        DataStream<KafkaMessagePO> stream = KafkaUtil.read(env);
+
 
         Duration max_time = Duration.ofMinutes(1);
-        SingleOutputStreamOperator<EventPO> eventData = stream.map(new KafkaETL());
-        eventData.assignTimestampsAndWatermarks(
+        KafkaUtil.read()
+                .assignTimestampsAndWatermarks(
                         WatermarkStrategy
                                 .<EventPO>forBoundedOutOfOrderness(max_time)
                                 .withTimestampAssigner(new MetricTimestampAssigner())
@@ -40,7 +31,7 @@ public class GenericMetricWithKafka {
                 .filter(new MetricFilter())
                 .keyBy(new MetricKeyBy())
                 .window(new MetricWindowAssigner())
-                .trigger(new MetricTrigger());
-//                .aggregate(new MetricAggregate(), new MetricWindowFunction());
+                .trigger(new MetricTrigger())
+                .aggregate(new MetricAggregate(), new MetricWindowFunction()).print();
     }
 }

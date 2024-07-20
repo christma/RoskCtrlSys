@@ -7,7 +7,7 @@ import org.example.riskCtrlSys.utils.common.CommonUtil;
 public class MetricKeyBy implements KeySelector<EventPO, Integer> {
     @Override
     public Integer getKey(EventPO eventPO) throws Exception {
-        String keyby = eventPO.getMeiMetricsConfPO().getFlink_keyby();
+        String keyby = eventPO.getMetricsConfPO().getFlink_keyby();
         return (Integer) CommonUtil.getFieldValue(eventPO, keyby);
     }
 }

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class JedisConf {
     public static JedisPool getRedisPool() throws IOException {
-        ParameterTool parameters = ParameterUtil.getParameters("flink.properties");
+        ParameterTool parameters = ParameterUtil.getParameters();
         String host = parameters.get("redis.host");
         int port = Integer.parseInt(parameters.get("redis.port"));
 //        System.out.println(host + ":" + port);
